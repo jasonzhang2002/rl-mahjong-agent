@@ -2,11 +2,106 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Project Report</title>
+    <title>RL Mahjong Agent</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("nav-links");
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "block";
+            }
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+    </script>
 </head>
 <body>
-    <h1>Welcome to My Project!</h1>
-    <p>This is the main report page.</p>
-    <a href="myreport.pdf" target="_blank">Download Report (PDF)</a>
+
+<header>
+    <h1>RL Mahjong Agent</h1>
+</header>
+
+<nav>
+    <button onclick="toggleMenu()">☰ Menu</button>
+    <button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+    <div id="nav-links" style="display:none;">
+        <a href="#project-intro">Project Introduction</a>
+        <a href="#mahjong-intro">Mahjong Introduction</a>
+        <a href="#results">Results</a>
+        <a href="#demo">Demo</a>
+    </div>
+</nav>
+
+<section id="project-intro">
+    <h2>Introduction to Project</h2>
+    <p>
+        This project explores the development of a Reinforcement Learning agent for the game of Japanese Riichi Mahjong.
+        We focus on designing effective reward structures, efficient state representations, and competitive self-play training regimes.
+    </p>
+</section>
+
+<section id="mahjong-intro">
+    <h2>Introduction to Mahjong</h2>
+    <p>
+        Mahjong is a complex tile-based game blending strategy, probability, and psychology. Here, we provide an overview to help
+        understand the environment in which our agent operates.
+    </p>
+
+    <h3 id="rules">Rules</h3>
+    <p>
+        Riichi Mahjong is played with 136 tiles and four players. Players aim to form a complete hand (four sets and a pair)
+        and declare "Mahjong" (winning) before others.
+    </p>
+
+    <h3 id="tiles">Tiles</h3>
+    <p>
+        The tiles are divided into suits (characters, bamboo, dots) and honor tiles (winds and dragons). Each suit has numbers 1-9.
+    </p>
+
+    <h3 id="glossary">Glossary</h3>
+    <ul>
+        <li><strong>Riichi:</strong> Declaring ready hand.</li>
+        <li><strong>Dora:</strong> Bonus tile giving extra points.</li>
+        <li><strong>Tenpai:</strong> One tile away from winning.</li>
+    </ul>
+
+    <h3 id="tenhou">Tenhou Platform</h3>
+    <p>
+        Tenhou (tenhou.net) is a popular online platform for playing Japanese Mahjong. It provides fast matchmaking and a competitive ladder system.
+    </p>
+
+    <h3 id="other-agents">Links to Other Agents</h3>
+    <ul>
+        <li><a href="https://github.com/Jimboom7/AlphaJong" target="_blank">AlphaJong</a></li>
+        <li><a href="https://github.com/MahjongRepository" target="_blank">Mahjong AI Repository</a></li>
+        <li><a href="https://deepmind.com/learning-resources/open-sourced-agents" target="_blank">DeepMind Open-Source Agents</a></li>
+    </ul>
+</section>
+
+<section id="results">
+    <h2>Results</h2>
+    <p>
+        Our agent achieves competitive performance against baseline heuristic agents. After 100,000 self-play games, it consistently maintains
+        a positive expected point gain per game. Future improvements include faster simulation speeds and enhanced discard strategies.
+    </p>
+</section>
+
+<section id="demo">
+    <h2>Demo</h2>
+    <p>
+        Watch a demo of the agent playing on simulated Tenhou environments below:
+    </p>
+    <p>
+        <a href="demo_video.mp4" target="_blank">View Demo Video</a>
+    </p>
+    <p>
+        Or try interacting with the agent directly (coming soon!).
+    </p>
+</section>
+
 </body>
 </html>
