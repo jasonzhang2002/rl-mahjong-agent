@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="style.css">
     <script>
         function toggleMenu() {
-            var menu = document.getElementById("nav-links");
-            if (menu.style.display === "block") {
-                menu.style.display = "none";
+            var menu = document.getElementById("side-menu");
+            if (menu.style.left === "0px") {
+                menu.style.left = "-250px";
             } else {
-                menu.style.display = "block";
+                menu.style.left = "0px";
             }
         }
 
@@ -18,23 +18,95 @@
             document.body.classList.toggle("dark-mode");
         }
     </script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        #menu-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1001;
+            background-color: #007acc;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #dark-mode-button {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1001;
+            background-color: #007acc;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #side-menu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #ffffff;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+            padding-top: 60px;
+            transition: left 0.3s;
+            z-index: 1000;
+        }
+        #side-menu a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #007acc;
+        }
+        #side-menu a:hover {
+            background-color: #f0f0f0;
+        }
+        header, section {
+            margin: 20px;
+            padding-top: 60px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        .dark-mode #side-menu {
+            background-color: #1e1e1e;
+        }
+        .dark-mode a {
+            color: #80dfff;
+        }
+    </style>
 </head>
 <body>
+
+<button id="menu-button" onclick="toggleMenu()">☰ Menu</button>
+<button id="dark-mode-button" onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+
+<div id="side-menu">
+    <a href="#project-intro">Project Introduction</a>
+    <a href="#mahjong-intro">Mahjong Introduction</a>
+    <a href="#rules">Rules</a>
+    <a href="#tiles">Tiles</a>
+    <a href="#glossary">Glossary</a>
+    <a href="#tenhou">Tenhou Platform</a>
+    <a href="#other-agents">Links to Other Agents</a>
+    <a href="#results">Results</a>
+    <a href="#demo">Demo</a>
+</div>
 
 <header>
     <h1>RL Mahjong Agent</h1>
 </header>
-
-<nav>
-    <button onclick="toggleMenu()">☰ Menu</button>
-    <button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
-    <div id="nav-links" style="display:none;">
-        <a href="#project-intro">Project Introduction</a>
-        <a href="#mahjong-intro">Mahjong Introduction</a>
-        <a href="#results">Results</a>
-        <a href="#demo">Demo</a>
-    </div>
-</nav>
 
 <section id="project-intro">
     <h2>Introduction to Project</h2>
