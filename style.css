@@ -1,50 +1,92 @@
+/* General */
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
     margin: 0;
-    padding: 0 20px;
-    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
     color: #333;
-    transition: background-color 0.3s, color 0.3s;
-}
-header, section {
-    margin-bottom: 40px;
-    padding-top: 60px;
-}
-h1, h2, h3 {
-    color: #222;
-}
-nav {
-    background-color: #ffffff;
-    padding: 20px;
-    margin-bottom: 30px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-nav a {
-    margin-right: 20px;
-    text-decoration: none;
-    color: #007acc;
-}
-nav a:hover {
-    text-decoration: underline;
-}
-button {
-    margin-right: 10px;
-    padding: 5px 10px;
-    font-size: 16px;
+    transition: background 0.3s, color 0.3s;
 }
 
-/* Dark Mode Toggle */
+#menu-button, #dark-mode-button {
+    position: fixed;
+    top: 10px;
+    padding: 10px;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 1001;
+}
+#menu-button {
+    left: 10px;
+}
+#dark-mode-button {
+    right: 10px;
+}
+
+/* Container and shifting */
+#container {
+    display: flex;
+    transition: transform 0.3s ease;
+}
+
+.menu-open {
+    transform: translateX(250px);
+}
+
+/* Side Menu */
+#side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: #ffffff;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    padding-top: 60px;
+    transform: translateX(-250px);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.menu-open #side-menu {
+    transform: translateX(0);
+}
+
+#side-menu a {
+    display: block;
+    padding: 12px 20px;
+    color: #007acc;
+    text-decoration: none;
+}
+
+#side-menu a:hover {
+    background-color: #f0f0f0;
+}
+
+/* Main Content */
+#main-content {
+    flex: 1;
+    padding: 20px;
+    margin-top: 60px;
+}
+
+/* Headings */
+h1, h2, h3 {
+    margin: 0 0 15px;
+}
+
+/* Dark Mode */
 .dark-mode {
     background-color: #121212;
     color: #e0e0e0;
 }
-.dark-mode nav {
+
+.dark-mode #side-menu {
     background-color: #1e1e1e;
 }
-.dark-mode a {
+
+.dark-mode #side-menu a {
     color: #80dfff;
 }

@@ -6,184 +6,105 @@
     <link rel="stylesheet" href="style.css">
     <script>
         function toggleMenu() {
-            var menu = document.getElementById("side-menu");
-            var content = document.getElementById("main-content");
-            if (menu.style.left === "0px") {
-                menu.style.left = "-250px";
-                content.style.marginLeft = "0";
-            } else {
-                menu.style.left = "0px";
-                content.style.marginLeft = "250px";
-            }
+            const container = document.getElementById("container");
+            container.classList.toggle("menu-open");
         }
 
         function toggleDarkMode() {
             document.body.classList.toggle("dark-mode");
         }
     </script>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            transition: margin-left 0.3s ease;
-        }
-        #menu-button {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            z-index: 1001;
-            background-color: #007acc;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        #dark-mode-button {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            z-index: 1001;
-            background-color: #007acc;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        #side-menu {
-            position: fixed;
-            top: 0;
-            left: -250px;
-            width: 250px;
-            height: 100%;
-            background-color: #ffffff;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
-            padding-top: 60px;
-            transition: left 0.3s ease;
-            z-index: 1000;
-        }
-        #side-menu a {
-            display: block;
-            padding: 10px 20px;
-            text-decoration: none;
-            color: #007acc;
-        }
-        #side-menu a:hover {
-            background-color: #f0f0f0;
-        }
-        #main-content {
-            margin-left: 0;
-            transition: margin-left 0.3s ease;
-            padding: 20px;
-        }
-        header, section {
-            margin: 20px 0;
-            padding-top: 60px;
-        }
-        h1, h2, h3 {
-            color: #333;
-        }
-        .dark-mode {
-            background-color: #121212;
-            color: #e0e0e0;
-        }
-        .dark-mode #side-menu {
-            background-color: #1e1e1e;
-        }
-        .dark-mode a {
-            color: #80dfff;
-        }
-    </style>
 </head>
 <body>
 
 <button id="menu-button" onclick="toggleMenu()">☰ Menu</button>
 <button id="dark-mode-button" onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
 
-<div id="side-menu">
-    <a href="#project-intro">Project Introduction</a>
-    <a href="#mahjong-intro">Mahjong Introduction</a>
-    <a href="#rules">Rules</a>
-    <a href="#tiles">Tiles</a>
-    <a href="#glossary">Glossary</a>
-    <a href="#tenhou">Tenhou Platform</a>
-    <a href="#other-agents">Links to Other Agents</a>
-    <a href="#results">Results</a>
-    <a href="#demo">Demo</a>
-</div>
+<div id="container">
+    <nav id="side-menu">
+        <a href="#project-intro">Project Introduction</a>
+        <a href="#mahjong-intro">Mahjong Introduction</a>
+        <a href="#rules">Rules</a>
+        <a href="#tiles">Tiles</a>
+        <a href="#glossary">Glossary</a>
+        <a href="#tenhou">Tenhou Platform</a>
+        <a href="#other-agents">Links to Other Agents</a>
+        <a href="#results">Results</a>
+        <a href="#demo">Demo</a>
+    </nav>
 
-<div id="main-content">
-<header>
-    <h1>RL Mahjong Agent</h1>
-</header>
+    <main id="main-content">
+        <header>
+            <h1>RL Mahjong Agent</h1>
+        </header>
 
-<section id="project-intro">
-    <h2>Introduction to Project</h2>
-    <p>
-        This project explores the development of a Reinforcement Learning agent for the game of Japanese Riichi Mahjong.
-        We focus on designing effective reward structures, efficient state representations, and competitive self-play training regimes.
-    </p>
-</section>
+        <section id="project-intro">
+            <h2>Introduction to Project</h2>
+            <p>
+                This project explores the development of a Reinforcement Learning agent for the game of Japanese Riichi Mahjong.
+                We focus on designing effective reward structures, efficient state representations, and competitive self-play training regimes.
+            </p>
+        </section>
 
-<section id="mahjong-intro">
-    <h2>Introduction to Mahjong</h2>
-    <p>
-        Mahjong is a complex tile-based game blending strategy, probability, and psychology. Here, we provide an overview to help
-        understand the environment in which our agent operates.
-    </p>
+        <section id="mahjong-intro">
+            <h2>Introduction to Mahjong</h2>
+            <p>
+                Mahjong is a complex tile-based game blending strategy, probability, and psychology. Here, we provide an overview to help
+                understand the environment in which our agent operates.
+            </p>
 
-    <h3 id="rules">Rules</h3>
-    <p>
-        Riichi Mahjong is played with 136 tiles and four players. Players aim to form a complete hand (four sets and a pair)
-        and declare "Mahjong" (winning) before others.
-    </p>
+            <h3 id="rules">Rules</h3>
+            <p>
+                Riichi Mahjong is played with 136 tiles and four players. Players aim to form a complete hand (four sets and a pair)
+                and declare "Mahjong" (winning) before others.
+            </p>
 
-    <h3 id="tiles">Tiles</h3>
-    <p>
-        The tiles are divided into suits (characters, bamboo, dots) and honor tiles (winds and dragons). Each suit has numbers 1-9.
-    </p>
+            <h3 id="tiles">Tiles</h3>
+            <p>
+                The tiles are divided into suits (characters, bamboo, dots) and honor tiles (winds and dragons). Each suit has numbers 1-9.
+            </p>
 
-    <h3 id="glossary">Glossary</h3>
-    <ul>
-        <li><strong>Riichi:</strong> Declaring ready hand.</li>
-        <li><strong>Dora:</strong> Bonus tile giving extra points.</li>
-        <li><strong>Tenpai:</strong> One tile away from winning.</li>
-    </ul>
+            <h3 id="glossary">Glossary</h3>
+            <ul>
+                <li><strong>Riichi:</strong> Declaring ready hand.</li>
+                <li><strong>Dora:</strong> Bonus tile giving extra points.</li>
+                <li><strong>Tenpai:</strong> One tile away from winning.</li>
+            </ul>
 
-    <h3 id="tenhou">Tenhou Platform</h3>
-    <p>
-        Tenhou (tenhou.net) is a popular online platform for playing Japanese Mahjong. It provides fast matchmaking and a competitive ladder system.
-    </p>
+            <h3 id="tenhou">Tenhou Platform</h3>
+            <p>
+                Tenhou (tenhou.net) is a popular online platform for playing Japanese Mahjong. It provides fast matchmaking and a competitive ladder system.
+            </p>
 
-    <h3 id="other-agents">Links to Other Agents</h3>
-    <ul>
-        <li><a href="https://github.com/Jimboom7/AlphaJong" target="_blank">AlphaJong</a></li>
-        <li><a href="https://github.com/MahjongRepository" target="_blank">Mahjong AI Repository</a></li>
-        <li><a href="https://deepmind.com/learning-resources/open-sourced-agents" target="_blank">DeepMind Open-Source Agents</a></li>
-    </ul>
-</section>
+            <h3 id="other-agents">Links to Other Agents</h3>
+            <ul>
+                <li><a href="https://github.com/Jimboom7/AlphaJong" target="_blank">AlphaJong</a></li>
+                <li><a href="https://github.com/MahjongRepository" target="_blank">Mahjong AI Repository</a></li>
+                <li><a href="https://deepmind.com/learning-resources/open-sourced-agents" target="_blank">DeepMind Open-Source Agents</a></li>
+            </ul>
+        </section>
 
-<section id="results">
-    <h2>Results</h2>
-    <p>
-        Our agent achieves competitive performance against baseline heuristic agents. After 100,000 self-play games, it consistently maintains
-        a positive expected point gain per game. Future improvements include faster simulation speeds and enhanced discard strategies.
-    </p>
-</section>
+        <section id="results">
+            <h2>Results</h2>
+            <p>
+                Our agent achieves competitive performance against baseline heuristic agents. After 100,000 self-play games, it consistently maintains
+                a positive expected point gain per game. Future improvements include faster simulation speeds and enhanced discard strategies.
+            </p>
+        </section>
 
-<section id="demo">
-    <h2>Demo</h2>
-    <p>
-        Watch a demo of the agent playing on simulated Tenhou environments below:
-    </p>
-    <p>
-        <a href="demo_video.mp4" target="_blank">View Demo Video</a>
-    </p>
-    <p>
-        Or try interacting with the agent directly (coming soon!).
-    </p>
-</section>
+        <section id="demo">
+            <h2>Demo</h2>
+            <p>
+                Watch a demo of the agent playing on simulated Tenhou environments below:
+            </p>
+            <p>
+                <a href="demo_video.mp4" target="_blank">View Demo Video</a>
+            </p>
+            <p>
+                Or try interacting with the agent directly (coming soon!).
+            </p>
+        </section>
+    </main>
 </div>
 
 </body>
