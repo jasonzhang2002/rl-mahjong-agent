@@ -6,8 +6,15 @@
     <link rel="stylesheet" href="style.css">
     <script>
         function toggleMenu() {
-            const container = document.getElementById("container");
-            container.classList.toggle("menu-open");
+            const menu = document.getElementById("side-menu");
+            const content = document.getElementById("main-content");
+            if (menu.classList.contains("open")) {
+                menu.classList.remove("open");
+                content.classList.remove("shifted");
+            } else {
+                menu.classList.add("open");
+                content.classList.add("shifted");
+            }
         }
 
         function toggleDarkMode() {
@@ -17,8 +24,8 @@
 </head>
 <body>
 
-<div id="container">
-    <nav id="side-menu">
+<div id="page">
+    <div id="side-menu">
         <a href="#project-intro">Project Introduction</a>
         <a href="#mahjong-intro">Mahjong Introduction</a>
         <a href="#rules">Rules</a>
@@ -28,9 +35,9 @@
         <a href="#other-agents">Links to Other Agents</a>
         <a href="#results">Results</a>
         <a href="#demo">Demo</a>
-    </nav>
+    </div>
 
-    <main id="main-content">
+    <div id="main-content">
         <button id="menu-button" onclick="toggleMenu()">☰ Menu</button>
         <button id="dark-mode-button" onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
 
@@ -45,34 +52,21 @@
 
         <section id="mahjong-intro">
             <h2>Introduction to Mahjong</h2>
-            <p>Mahjong is a complex tile-based game blending strategy, probability, and psychology...</p>
-
             <h3 id="rules">Rules</h3>
-            <p>...</p>
-
             <h3 id="tiles">Tiles</h3>
-            <p>...</p>
-
             <h3 id="glossary">Glossary</h3>
-            <p>...</p>
-
             <h3 id="tenhou">Tenhou Platform</h3>
-            <p>...</p>
-
             <h3 id="other-agents">Links to Other Agents</h3>
-            <p>...</p>
         </section>
 
         <section id="results">
             <h2>Results</h2>
-            <p>...</p>
         </section>
 
         <section id="demo">
             <h2>Demo</h2>
-            <p>...</p>
         </section>
-    </main>
+    </div>
 </div>
 
 </body>
