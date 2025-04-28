@@ -1,10 +1,14 @@
+/* Import a Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 /* Base page layout */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     background: #f9f9f9;
     color: #333;
     overflow-x: hidden;
+    line-height: 1.6;
 }
 
 /* Page structure */
@@ -35,13 +39,15 @@ body {
     font-size: 24px;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     color: #007acc;
+    letter-spacing: 1px;
 }
 
 #side-menu a {
     display: block;
     padding: 15px 20px;
+    font-size: 18px;
     color: #007acc;
     text-decoration: none;
 }
@@ -53,7 +59,7 @@ body {
 /* Main Content */
 #main-content {
     margin-left: 0;
-    padding: 20px;
+    padding: 30px 40px;
     transition: margin-left 0.3s ease;
     width: 100%;
 }
@@ -68,12 +74,49 @@ body {
     background: none;
     border: none;
     padding: 10px;
-    font-size: 30px;
+    font-size: 32px;
     cursor: pointer;
     color: #007acc;
 }
 
-/* Header and Sections */
-h1, h2, h3 {
-    margin-top: 20px;
+/* Headers */
+h1 {
+    font-size: 40px;
+    color: #003366;
+    margin-bottom: 10px;
+    border-bottom: 3px solid #007acc;
+    padding-bottom: 10px;
+}
+
+h2 {
+    font-size: 30px;
+    color: #004080;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #007acc;
+    padding-bottom: 5px;
+}
+
+h3 {
+    font-size: 24px;
+    color: #0059b3;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+/* Paragraphs */
+p {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+/* Lists */
+ul {
+    font-size: 18px;
+    padding-left: 20px;
+}
+
+ul li {
+    margin-bottom: 8px;
 }
