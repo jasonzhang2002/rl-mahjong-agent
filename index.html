@@ -1,68 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>RL Mahjong Agent</title>
-    <link rel="stylesheet" href="style.css">
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById("side-menu");
-            const content = document.getElementById("main-content");
-            if (menu.classList.contains("open")) {
-                menu.classList.remove("open");
-                content.classList.remove("shifted");
-            } else {
-                menu.classList.add("open");
-                content.classList.add("shifted");
-            }
-        }
-    </script>
+  <meta charset="UTF-8">
+  <title>RL Mahjong Agent</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("side-menu");
+      const content = document.getElementById("main-content");
+      if (menu.classList.contains("open")) {
+        menu.classList.remove("open");
+        content.classList.remove("shifted");
+      } else {
+        menu.classList.add("open");
+        content.classList.add("shifted");
+      }
+    }
+  </script>
 </head>
 <body>
 
 <div id="page">
-    <div id="side-menu">
-        <div class="menu-title">Menu</div>
-        <a href="#project-intro">Project Introduction</a>
-        <a href="#mahjong-intro">Mahjong Introduction</a>
-        <a href="#rules">Rules</a>
-        <a href="#tiles">Tiles</a>
-        <a href="#glossary">Glossary</a>
-        <a href="#tenhou">Tenhou Platform</a>
-        <a href="#other-agents">Links to Other Agents</a>
-        <a href="#results">Results</a>
-        <a href="#demo">Demo</a>
-    </div>
+  <div id="side-menu">
+    <div class="menu-title">Menu</div>
+    <a href="#rlmahjong">RLMahjong</a>
+    <a href="#mahjong-intro">Mahjong Introduction</a>
+    <a href="#rules">Rules</a>
+    <a href="#tiles">Tiles</a>
+    <a href="#glossary">Glossary</a>
+    <a href="#tenhou">Tenhou Platform</a>
+    <a href="#other-agents">Links to Other Agents</a>
+    <a href="#results">Results</a>
+    <a href="#demo">Demo</a>
+  </div>
 
-    <div id="main-content">
-        <button id="menu-button" onclick="toggleMenu()">☰</button>
+  <div id="main-content">
+    <button id="menu-button" onclick="toggleMenu()">☰</button>
 
-        <header>
-            <h1>RL Mahjong Agent</h1>
-        </header>
+    <section id="rlmahjong" class="section-with-image">
+      <div class="text">
+        <h1>RL Mahjong Agent</h1>
+        <p>
+          This project explores the development of a Reinforcement Learning agent for the game of Japanese Riichi Mahjong.
+          We focus on designing effective reward structures, efficient state representations, and competitive self-play training regimes.
+        </p>
+      </div>
+      <div class="image">
+        <img src="images/tenhou_gameplay.jpg" alt="RL Mahjong Intro Image">
+      </div>
+    </section>
 
-        <section id="project-intro">
-            <h2>Introduction to Project</h2>
-            <p>This project explores the development of a Reinforcement Learning agent for Japanese Riichi Mahjong...</p>
-        </section>
+    <section id="mahjong-intro">
+      <h2>Introduction to Mahjong</h2>
 
-        <section id="mahjong-intro">
-            <h2>Introduction to Mahjong</h2>
-            <h3 id="rules">Rules</h3>
-            <h3 id="tiles">Tiles</h3>
-            <h3 id="glossary">Glossary</h3>
-            <h3 id="tenhou">Tenhou Platform</h3>
-            <h3 id="other-agents">Links to Other Agents</h3>
-        </section>
+      <div class="mahjong-grid">
+        <!-- Row 1: Tiles and Rules -->
+        <div class="mahjong-subsection" id="tiles">
+          <div class="section-image">
+            <img src="images/mahjong-tiles.png" alt="Tiles Example">
+          </div>
+          <h3>Tiles</h3>
+          <p>In Riichi Mahjong, tiles are divided into several categories: suits and honors. Suited tiles include characters (manzu), bamboo (souzu), and circles (pinzu), each numbered from one to nine. Honor tiles consist of winds (east, south, west, north) and dragons (white, green, and red). Each tile type appears four times, resulting in a total of 136 tiles used in the game. Understanding the distribution and relationships between these tile groups is critical for identifying efficient paths to complete a hand, assessing discards, and predicting opponents' hands based on observed behavior.</p>
+        </div>
 
-        <section id="results">
-            <h2>Results</h2>
-        </section>
+        <div class="mahjong-subsection" id="rules">
+          <div class="section-image">
+            <img src="images/mahjong-rules.png" alt="Rules Example">
+          </div>
+          <h3>Rules</h3>
+          <p>Riichi Mahjong is a four-player game centered around assembling a legal winning hand of fourteen tiles. A complete hand typically consists of four sets (three tiles forming sequences or triplets) and one pair, although exceptions exist for special hands. Players draw and discard tiles turn-by-turn, aiming to complete their hand before others. A unique feature of Riichi Mahjong is the concept of "riichi," a declaration made when a player is one tile away from winning, locking in their hand structure and increasing potential points. Rules also govern calls (pon, chi, kan) that allow stealing tiles from others, and scoring is influenced by both hand structure and hidden bonuses such as dora.</p>
+        </div>
 
-        <section id="demo">
-            <h2>Demo</h2>
-        </section>
-    </div>
+        <!-- Row 2: Yaku and Glossary -->
+  <div class="mahjong-subsection" id="yaku">
+  <h3>Yaku</h3>
+  <p>In Riichi Mahjong, a hand must satisfy at least one "yaku" — a specific pattern or condition — to be eligible for winning. Below are some basic yaku important for both players and AI agents to recognize:</p>
+
+  <ul>
+
+    <li>
+      <strong>Riichi:</strong> Declare ready hand; must have a closed hand.
+      <div class="tile-row">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+      </div>
+    </li>
+
+    <li>
+      <strong>Tanyao (All Simples):</strong> Hand composed entirely of 2–8 numbered tiles.
+      <div class="tile-row">
+        <img src="/images/mahjong_tiles_png/Mpt2m.png" alt="2-man">
+        <img src="/images/mahjong_tiles_png/Mpt3m.png" alt="3-man">
+        <img src="/images/mahjong_tiles_png/Mpt4m.png" alt="4-man">
+        <img src="/images/mahjong_tiles_png/Mpt5p.png" alt="5-pin">
+        <img src="/images/mahjong_tiles_png/Mpt6p.png" alt="6-pin">
+        <img src="/images/mahjong_tiles_png/Mpt7p.png" alt="7-pin">
+        <img src="/images/mahjong_tiles_png/Mpt5s.png" alt="5-sou">
+        <img src="/images/mahjong_tiles_png/Mpt6s.png" alt="6-sou">
+        <img src="/images/mahjong_tiles_png/Mpt7s.png" alt="7-sou">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Hidden tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Hidden tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Hidden tile">
+                  <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Hidden tile">
+                  <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Hidden tile">
+      </div>
+    </li>
+
+    <li>
+      <strong>Pinfu:</strong> Hand made entirely of sequences, no points for waits.
+      <div class="tile-row">
+        <img src="/images/mahjong_tiles_png/Mpt2m.png" alt="2-man">
+        <img src="/images/mahjong_tiles_png/Mpt3m.png" alt="3-man">
+        <img src="/images/mahjong_tiles_png/Mpt4m.png" alt="4-man">
+        <img src="/images/mahjong_tiles_png/Mpt6p.png" alt="6-pin">
+        <img src="/images/mahjong_tiles_png/Mpt7p.png" alt="7-pin">
+        <img src="/images/mahjong_tiles_png/Mpt8p.png" alt="8-pin">
+        <img src="/images/mahjong_tiles_png/Mpt3s.png" alt="3-sou">
+        <img src="/images/mahjong_tiles_png/Mpt4s.png" alt="4-sou">
+        <img src="/images/mahjong_tiles_png/Mpt5s.png" alt="5-sou">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Hidden tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Hidden tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Hidden tile">
+                  <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Hidden tile">
+                  <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Hidden tile">
+      </div>
+    </li>
+
+    <li>
+      <strong>Yakuhai (Value Tiles):</strong> Triplet of dragons or seat winds.
+      <div class="tile-row">
+        <img src="/images/mahjong_tiles_png/Mpt5q.png" alt="Red Dragon">
+        <img src="/images/mahjong_tiles_png/Mpt5q.png" alt="Red Dragon">
+        <img src="/images/mahjong_tiles_png/Mpt5q.png" alt="Red Dragon">
+        <img src="/images/mahjong_tiles_png/Mpt7p.png" alt="7-pin">
+        <img src="/images/mahjong_tiles_png/Mpt8p.png" alt="8-pin">
+        <img src="/images/mahjong_tiles_png/Mpt9p.png" alt="9-pin">
+        <img src="/images/mahjong_tiles_png/Mpt2s.png" alt="2-sou">
+        <img src="/images/mahjong_tiles_png/Mpt3s.png" alt="3-sou">
+        <img src="/images/mahjong_tiles_png/Mpt4s.png" alt="4-sou">
+        <img src="/images/mahjong_tiles_png/Mpt6m.png" alt="6-man">
+        <img src="/images/mahjong_tiles_png/Mpt7m.png" alt="7-man">
+                  <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Hidden tile">
+                  <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Hidden tile">
+                  <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Hidden tile">
+      </div>
+    </li>
+
+    <li>
+      <strong>Iipeikou (Pure Double Sequence):</strong> Two identical sequences in the same suit.
+      <div class="tile-row">
+        <img src="/images/mahjong_tiles_png/Mpt3s.png" alt="3-sou">
+        <img src="/images/mahjong_tiles_png/Mpt4s.png" alt="4-sou">
+        <img src="/images/mahjong_tiles_png/Mpt5s.png" alt="5-sou">
+        <img src="/images/mahjong_tiles_png/Mpt3s.png" alt="3-sou">
+        <img src="/images/mahjong_tiles_png/Mpt4s.png" alt="4-sou">
+        <img src="/images/mahjong_tiles_png/Mpt5s.png" alt="5-sou">
+        <img src="/images/mahjong_tiles_png/Mpt2m.png" alt="2-man">
+        <img src="/images/mahjong_tiles_png/Mpt3m.png" alt="3-man">
+        <img src="/images/mahjong_tiles_png/Mpt4m.png" alt="4-man">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Hidden tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Hidden tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Hidden tile">
+                  <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Hidden tile">
+                  <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Hidden tile">
+      </div>
+    </li>
+
+    <li>
+      <strong>Menzen Tsumo:</strong> Winning by self-draw with a closed hand.
+      <div class="tile-row">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+        <img src="/images/mahjong_tiles_png/Mpt00.png" alt="Closed tile">
+      </div>
+    </li>
+
+  </ul>
+</div>
+
+
+        <div class="mahjong-subsection" id="glossary">
+          <h3>Glossary</h3>
+          <p>A collection of key terms frequently used in Riichi Mahjong gameplay, essential for understanding game flow and rules:</p>
+          <ul>
+            <li><strong>Riichi:</strong> Declaration of a ready hand by betting 1000 points.</li>
+            <li><strong>Dora:</strong> Bonus tiles that increase hand value.</li>
+            <li><strong>Tenpai:</strong> A hand one tile away from winning.</li>
+            <li><strong>Furiten:</strong> Cannot win off discard if you have discarded a winning tile.</li>
+            <li><strong>Tsumo:</strong> Winning by drawing the needed tile yourself.</li>
+            <li><strong>Ron:</strong> Winning by claiming another player's discarded tile.</li>
+            <li><strong>Yaku:</strong> Specific hand patterns or conditions required to win.</li>
+            <li><strong>Chombo:</strong> Penalty for an illegal move, such as a false win.</li>
+            <li><strong>Kan:</strong> Declaring a quad (four identical tiles) for extra draw and dora.</li>
+            <li><strong>Chi:</strong> Claiming a sequential meld from the player to your left.</li>
+            <li><strong>Pon:</strong> Claiming a triplet from any player's discard.</li>
+            <li><strong>Closed Hand:</strong> A hand without any open melds (chi, pon, kan).</li>
+            <li><strong>Open Hand:</strong> A hand with one or more open melds (revealed to others).</li>
+            <li><strong>Dealer (East):</strong> The player who starts the round; receives extra rewards for winning but more penalty for losing.</li>
+          </ul>
+        </div>
+
+        <!-- Row 3: Tenhou and Other Agents -->
+        <div class="mahjong-subsection" id="tenhou">
+            <div class="section-image">
+            <img src="images/tenhou_logo_raw_wb.png" alt="Tenhou Platform Example">
+          </div>
+          <h3>Tenhou Platform</h3>
+          <p>Tenhou (tenhou.net) is a popular online platform for playing Japanese Mahjong. It provides fast matchmaking, standardized rules, and detailed record-keeping, making it a popular choice for AI training and competition.</p>
+
+        </div>
+
+        <div class="mahjong-subsection" id="other-agents">
+          <h3>Links to Other Agents</h3>
+          <p>Several Mahjong AI projects, such as AlphaJong and other open repositories, explore training agents using deep reinforcement learning or classical search techniques. These agents provide a useful benchmark for comparison and inspiration for improvements.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="results">
+      <h2>Results</h2>
+      <p>Our agent achieves competitive performance against baseline heuristic agents. After 100,000 self-play games, it consistently maintains a positive expected point gain per game. Future improvements include faster simulation speeds and enhanced discard strategies.</p>
+    </section>
+
+    <section id="demo">
+      <h2>Demo</h2>
+      <p>Watch a demo of the agent playing on simulated Tenhou environments below:</p>
+      <p><a href="demo_video.mp4" target="_blank">View Demo Video</a></p>
+      <p>Or try interacting with the agent directly (coming soon!).</p>
+    </section>
+
+  </div>
 </div>
 
 </body>
