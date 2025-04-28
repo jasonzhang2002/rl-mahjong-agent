@@ -16,16 +16,13 @@
                 content.classList.add("shifted");
             }
         }
-
-        function toggleDarkMode() {
-            document.body.classList.toggle("dark-mode");
-        }
     </script>
 </head>
 <body>
 
 <div id="page">
     <div id="side-menu">
+        <div class="menu-title">Menu</div>
         <a href="#project-intro">Project Introduction</a>
         <a href="#mahjong-intro">Mahjong Introduction</a>
         <a href="#rules">Rules</a>
@@ -38,8 +35,7 @@
     </div>
 
     <div id="main-content">
-        <button id="menu-button" onclick="toggleMenu()">☰ Menu</button>
-        <button id="dark-mode-button" onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+        <button id="menu-button" onclick="toggleMenu()">☰</button>
 
         <header>
             <h1>RL Mahjong Agent</h1>
