@@ -7,10 +7,13 @@
     <script>
         function toggleMenu() {
             var menu = document.getElementById("side-menu");
+            var content = document.getElementById("main-content");
             if (menu.style.left === "0px") {
                 menu.style.left = "-250px";
+                content.style.marginLeft = "0";
             } else {
                 menu.style.left = "0px";
+                content.style.marginLeft = "250px";
             }
         }
 
@@ -22,6 +25,7 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
+            transition: margin-left 0.3s ease;
         }
         #menu-button {
             position: fixed;
@@ -56,7 +60,7 @@
             background-color: #ffffff;
             box-shadow: 2px 0 5px rgba(0,0,0,0.5);
             padding-top: 60px;
-            transition: left 0.3s;
+            transition: left 0.3s ease;
             z-index: 1000;
         }
         #side-menu a {
@@ -68,8 +72,13 @@
         #side-menu a:hover {
             background-color: #f0f0f0;
         }
+        #main-content {
+            margin-left: 0;
+            transition: margin-left 0.3s ease;
+            padding: 20px;
+        }
         header, section {
-            margin: 20px;
+            margin: 20px 0;
             padding-top: 60px;
         }
         h1, h2, h3 {
@@ -104,6 +113,7 @@
     <a href="#demo">Demo</a>
 </div>
 
+<div id="main-content">
 <header>
     <h1>RL Mahjong Agent</h1>
 </header>
@@ -174,6 +184,7 @@
         Or try interacting with the agent directly (coming soon!).
     </p>
 </section>
+</div>
 
 </body>
 </html>
