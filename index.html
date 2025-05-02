@@ -547,35 +547,35 @@ This design allows the agent to reuse supervised learning heads trained on Tenho
     <tr>
       <td><strong>Discard</strong></td>
       <td>17GB</td>
-      <td>0.7142</td>
+      <td>0.6142</td>
       <td>0.8882</td>
       <td>0.9542</td>
     </tr>
     <tr>
       <td><strong>Riichi</strong></td>
       <td>6GB</td>
-      <td>0.8263</td>
+      <td>0.7263</td>
       <td>~</td>
       <td>~</td>
     </tr>
     <tr>
       <td><strong>Pon</strong></td>
       <td>12GB</td>
-      <td>0.8722</td>
+      <td>0.7722</td>
       <td>~</td>
       <td>~</td>
     </tr>
     <tr>
       <td><strong>Chi</strong></td>
       <td>12GB</td>
-      <td>0.8524</td>
+      <td>0.7124</td>
       <td>~</td>
       <td>~</td>
     </tr>
     <tr>
       <td><strong>Kan</strong></td>
       <td>5GB</td>
-      <td>0.9486</td>
+      <td>0.9386</td>
       <td>~</td>
       <td>~</td>
     </tr>
@@ -586,7 +586,7 @@ This design allows the agent to reuse supervised learning heads trained on Tenho
   The discard model, trained on the largest dataset segment (17GB), achieves a top-5 accuracy of 95.42%,
   indicating reliable alignment with expert discard behavior. Models for binary decision tasks (Riichi, Pon,
   Chi, and Kan) also show high top-1 accuracy despite smaller dataset sizes, with the Kan model
-  reaching 94.86% using only 5GB. The lack of top-3 and top-5 metrics for these tasks reflects
+  reaching 93.86% using only 5GB. The lack of top-3 and top-5 metrics for these tasks reflects
   their binary nature. Overall, the supervised models effectively capture expert priors and provide
   a strong initialization for subsequent reinforcement learning.
 </p>
@@ -597,11 +597,11 @@ This design allows the agent to reuse supervised learning heads trained on Tenho
     <h3>Initial Comparisons</h3>
     <p>
       To evaluate the effectiveness of reinforcement learning without supervised initialization,
-      we trained agents using PPO and REINFORCE from scratch over 200,000 self-play games in addition to the
+      we trained agents using PPO and REINFORCE from scratch over 40,000 self-play games in addition to the
       model trained using expert data.
       These agents were benchmarked against a random baseline, where agents select uniformly
       from legal actions at each decision point. This setup tests whether reinforcement learning
-      alone—absent any expert priors—can yield competitive policies. Each trained agent was then
+      alone, absent any expert priors, can yield competitive policies. Each trained agent was then
       evaluated over 100 simulated games against the random policy, providing a measure of relative
       performance purely attributable to the learning algorithm and interaction dynamics.
     </p>
@@ -612,16 +612,16 @@ This design allows the agent to reuse supervised learning heads trained on Tenho
   <thead>
     <tr>
       <th>Agent Type</th>
-      <th>Avg Score</th>
+      <th>Avg. Tenhou Rating Gain/Loss</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>PPO</td>
+      <td>Supervised Learning</td>
       <td>+29.3</td>
     </tr>
     <tr>
-      <td>Supervised Learning</td>
+      <td>PPO</td>
       <td>+18.9</td>
     </tr>
     <tr>
@@ -634,20 +634,20 @@ This design allows the agent to reuse supervised learning heads trained on Tenho
     </tr>
   </tbody>
 </table>
-    <p>
-      The results indicate that PPO is the most effective of the evaluated approaches,
-      achieving the highest average score (+29.3) after training from scratch. This suggests
-      that policy optimization with stable gradient updates can discover competent strategies in
-      Mahjong without supervised pretraining. In contrast, REINFORCE underperforms (–8.5), likely
-      due to its high variance and slower convergence in multi-agent, sparse-reward settings. The
-      supervised learning agent performs competitively (+18.9), showing that expert imitation alone
-      can capture much of the structure of play, though it lacks the adaptability of reinforcement
-      learning. As expected, the random agent performs poorly (–39.7), reinforcing the need for policy
-      learning. These comparisons demonstrate that while reinforcement learning is effective on its own,
-      combining it with prior knowledge offers further advantages.
-
-
-    </p>
+<p>
+  Both PPO and REINFORCE outperform the random baseline,
+  indicating that reinforcement learning from scratch is capable of learning meaningful strategies
+  in Mahjong. PPO, in particular, shows solid improvement (+18.9), suggesting that stable policy
+  optimization can extract useful behavior even in the absence of expert supervision. REINFORCE,
+  while weaker (–8.5), still surpasses random play (–39.7), reflecting some level of learned policy,
+  despite its known issues with high variance and inefficient credit assignment in sparse-reward settings.
+  <br><br>
+  However, neither reinforcement learning method surpasses the supervised learning agent (+29.3),
+  which benefits from direct exposure to expert demonstrations. This outcome reinforces the idea
+  that supervised learning provides a strong prior that helps model core decision-making patterns
+  effectively. Even after 40,000 training iterations, the gap between supervised and RL-only agents
+  remains evident, highlighting the value of expert data in early-stage policy development.
+</p>
   </div>
 
   <div id="final-performance" class="results-subsection">
