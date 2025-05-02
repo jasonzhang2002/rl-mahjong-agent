@@ -17,7 +17,38 @@
       }
     }
   </script>
+
   <style>
+#side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: #f5f5f5;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  transform: translateX(-100%);
+}
+
+#side-menu.open {
+  transform: translateX(0);
+}
+
+#main-content {
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+  padding: 0 5%;
+}
+
+#main-content.shifted {
+  margin-left: 250px;
+}
+
+
 /* Default: no padding */
   #main-content {
     padding: 0 5%;
@@ -61,7 +92,7 @@
 
 <div id="side-menu">
   <div class="menu-title">Menu</div>
-  <a href="#rlmahjong">MahjongMind</a>
+  <a href="#rlmahjong">Abstract</a>
   <a href="#mahjong-intro">Introduction to Mahjong</a>
 
   <div class="submenu">
@@ -69,12 +100,23 @@
     <a href="#rules">Rules</a>
     <a href="#yaku">Yaku</a>
     <a href="#glossary">Glossary</a>
-    <a href="#tenhou">Tenhou Platform</a>
-    <a href="#other-agents">Other Agents</a>
   </div>
 
   <a href="#methodology">Methodology</a>
+  <div class="submenu">
+    <a href="#pipeline-architecture">Model Pipeline and Architecture</a>
+    <a href="#tools-and-dataset">Tools and Datasets</a>
+    <a href="#dataset">Tenhou Dataset</a>
+    <a href="#mjx">MJX Framework</a>
+  </div>
+
   <a href="#results">Experiments & Results</a>
+  <div class="submenu">
+    <a href="#supervised-performance">Supervised Learning</a>
+    <a href="#initial-comparisons">Initial Comparisons</a>
+    <a href="#final-performance">Final Performance</a>
+  </div>
+
   <a href="#demo">Demo</a>
   <a href="#conclusion">Conclusion</a>
   <a href="#citations">Citations</a>
@@ -287,7 +329,7 @@
 
     <section id="methodology" class="centered-section">
   <h2>Methodology</h2>
-  <h3>Model Pipeline and Architecture</h3>
+  <h3 id="pipeline-architecture">Model Pipeline and Architecture</h3>
 
   <div class="image-container">
     <img src="images/mahjongmind_training_pipeline.png" alt="MahjongMind Training Pipeline" width="800">
@@ -299,9 +341,9 @@
     Description of pipeline, architecture, and models.
   </p>
 
-      <h3>Tools and Datasets</h3>
+      <h3 id="tools-and-dataset">Tools and Datasets</h3>
 
-  <h4>Tenhou 4-Player Riichi Mahjong Dataset</h4>
+  <h4 id="dataset">Tenhou 4-Player Riichi Mahjong Dataset</h4>
   <p>
     We utilized the <a href="https://www.kaggle.com/datasets/hphphp123321/tenhou-4-player-riichi-mahjong-dataset/data" target="_blank">
     Tenhou 4-Player Riichi Mahjong Dataset</a>, which contains over 1 million rounds of play collected from online matches.
@@ -309,7 +351,7 @@
     into training tuples representing decision points such as discards, riichi declarations, and calls (chi, pon, kan).
   </p>
 
-  <h4>MJX Framework</h4>
+  <h4 id="mjx">MJX Framework</h4>
   <p>
     For simulation and reinforcement learning, we used <a href="https://github.com/mjx-project/mjx" target="_blank">MJX</a>,
     a fast and extensible Mahjong environment written in C++ and wrapped in Python. It provides full observability controls,
