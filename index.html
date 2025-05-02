@@ -17,7 +17,12 @@
       }
     }
   </script>
-  <script> src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> </script>
+  <script>
+    src="https://polyfill.io/v3/polyfill.min.js?features=es6">
+  </script>
+  <script
+          id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
 
 
   <style>
@@ -126,7 +131,8 @@
 </div>
 
   <div id="main-content">
-    <div style="width: 100%; display: flex; flex-direction: column; align-items: center; margin-top: 30px; margin-bottom: 40px;">
+    <div style="width: 100%; display: flex; flex-direction: column; align-items: center; margin-top:
+    30px; margin-bottom: 40px;">
   <h1 style="font-size: 3.5em; margin-bottom: 10px; text-align: center;">MahjongMind: Reinforcement
   Learning in Imperfect Information, Multi-Agent, Competitve Environments</h1>
   <p style="font-size: 1.5em; margin: 0; text-align: center;">Jason Zhang, Amy Kim, Eric Lin</p>
@@ -136,23 +142,31 @@
   <div class="text">
     <h2>Abstract</h2>
     <p>
-    <strong>Riichi Mahjong</strong> is a complex, multi-agent, imperfect information game that presents a formidable challenge for artificial intelligence.
-    Its strategic depth, hidden information, and multi-round structure closely mirror real-world domains such as financial markets and logistics optimization,
+    <strong>Riichi Mahjong</strong> is a complex, multi-agent, imperfect information game
+      that presents a formidable challenge for artificial intelligence.
+    Its strategic depth, hidden information, and multi-round structure closely
+      mirror real-world domains such as financial markets and logistics optimization,
     making it an ideal testbed for developing generalizable decision-making algorithms.
   </p>
   <p>
-    In this work, we introduce <strong>MahjongMind</strong>, a reinforcement learning agent trained through self-play in the MJX simulation environment.
-    Our approach combines reinforcement learning with rule-based decision trees to incorporate domain knowledge into action selection,
+    In this work, we introduce <strong>MahjongMind</strong>, a reinforcement learning
+    agent trained through self-play in the MJX simulation environment.
+    Our approach combines reinforcement learning with rule-based decision trees to
+    incorporate domain knowledge into action selection,
     enabling the agent to balance learned policy behavior with stable, interpretable heuristics.
-    We evaluate MahjongMind against a suite of baselines including <em>AlphaJong</em>—a search-based AI known for reaching Master rank—alongside rule-based agents
+    We evaluate MahjongMind against a suite of baselines including <em>AlphaJong</em>, a
+    search-based AI known for reaching Master rank, alongside rule-based agents
     (ShantenAgent, RuleBasedAgent) and a random policy.
-    Across 100 evaluation games, MahjongMind achieves first place 43% of the time and records a <strong>+40.95</strong> average Tenhou-style rating gain,
-    outperforming AlphaJong (<strong>+25.20</strong>) and all other baselines.
+    Across 100 evaluation games, MahjongMind achieves first place 38.3% of the time and
+    records a <strong>+25.97</strong> average Tenhou-style rating gain,
+    outperforming the master-ranked AlphaJong (<strong>+20.07</strong>) and all other baselines.
   </p>
   <p>
-    These results demonstrate that augmenting reinforcement learning with structured, rule-based priors can yield strong, adaptive performance in environments
+    These results demonstrate that augmenting reinforcement learning with structured,
+    rule-based priors can yield strong, adaptive performance in environments
     characterized by hidden information and sequential dependencies.
-    We conclude with a gameplay visualization and discuss future directions involving opponent modeling and deeper integration of learned and symbolic strategies.
+    We conclude with a gameplay visualization and discuss future directions involving
+    opponent modeling and deeper integration of learned and symbolic strategies.
   </p>
   </div>
   <div class="image">
@@ -170,9 +184,17 @@
             <img src="images/mahjong-tiles.png" alt="Tiles Example">
           </div>
           <h3>Tiles</h3>
-          <p>In Riichi Mahjong, tiles are divided into several categories: suits and honors. Suited tiles include characters (manzu), bamboo (souzu), and circles (pinzu), each numbered from one to nine. Honor tiles consist of winds (east, south, west, north) and dragons (white, green, and red). Each tile type appears four times, resulting in a total of 136 tiles used in the game. Understanding the distribution and relationships between these tile groups is critical for identifying efficient paths to complete a hand, assessing discards, and predicting opponents' hands based on observed behavior.</p>
+          <p>In Riichi Mahjong, tiles are divided into several categories: suits and
+            honors. Suited tiles include characters (manzu), bamboo (souzu), and
+            circles (pinzu), each numbered from one to nine. Honor tiles consist
+            of winds (east, south, west, north) and dragons (white, green, and red).
+            Each tile type appears four times, resulting in a total of 136 tiles used
+            in the game. Understanding the distribution and relationships between these
+            tile groups is critical for identifying efficient paths to complete a hand,
+            assessing discards, and predicting opponents' hands based on observed behavior.</p>
           <!-- Button -->
-          <a href="https://en.wikipedia.org/wiki/Mahjong_tiles" class="info-button" target="_blank">More Info</a>
+          <a href="https://en.wikipedia.org/wiki/Mahjong_tiles" class="info-button"
+             target="_blank">More Info</a>
         </div>
 
         <div class="mahjong-subsection" id="rules">
@@ -180,15 +202,28 @@
             <img src="images/mahjong-rules.png" alt="Rules Example">
           </div>
           <h3>Rules</h3>
-          <p>Riichi Mahjong is a four-player game centered around assembling a legal winning hand of fourteen tiles. A complete hand typically consists of four sets (three tiles forming sequences or triplets) and one pair, although exceptions exist for special hands. Players draw and discard tiles turn-by-turn, aiming to complete their hand before others. A unique feature of Riichi Mahjong is the concept of "riichi," a declaration made when a player is one tile away from winning, locking in their hand structure and increasing potential points. Rules also govern calls (pon, chi, kan) that allow stealing tiles from others, and scoring is influenced by both hand structure and hidden bonuses such as dora.</p>
+          <p>Riichi Mahjong is a four-player game centered around assembling
+            a legal winning hand of fourteen tiles. A complete hand typically
+            consists of four sets (three tiles forming sequences or triplets)
+            and one pair, although exceptions exist for special hands. Players
+            draw and discard tiles turn-by-turn, aiming to complete their hand before
+            others. A unique feature of Riichi Mahjong is the concept of "riichi,"
+            a declaration made when a player is one tile away from winning, locking
+            in their hand structure and increasing potential points. Rules also
+            govern calls (pon, chi, kan) that allow stealing tiles from others,
+            and scoring is influenced by both hand structure and hidden bonuses
+            such as dora.</p>
           <!-- Button -->
-          <a href="https://mahjong.guide/a-beginners-guide-to-riichi-mahjong/" class="info-button" target="_blank">More Info</a>
+          <a href="https://mahjong.guide/a-beginners-guide-to-riichi-mahjong/"
+             class="info-button" target="_blank">More Info</a>
         </div>
 
         <!-- Row 2: Yaku and Glossary -->
   <div class="mahjong-subsection" id="yaku">
   <h3>Yaku</h3>
-  <p>In Riichi Mahjong, a hand must satisfy at least one "yaku" — a specific pattern or condition — to be eligible for winning. Below are some basic yaku important for both players and AI agents to recognize:</p>
+  <p>In Riichi Mahjong, a hand must satisfy at least one "yaku", a specific pattern or condition, to be
+    eligible for winning. Below are some basic yaku important for both players and
+    AI agents to recognize:</p>
 
   <ul>
 
@@ -320,7 +355,8 @@
 
         <div class="mahjong-subsection" id="glossary">
           <h3>Glossary</h3>
-          <p>A collection of key terms frequently used in Riichi Mahjong gameplay, essential for understanding game flow and rules:</p>
+          <p>A collection of key terms frequently used in Riichi Mahjong
+            gameplay, essential for understanding game flow and rules:</p>
           <ul>
             <li><strong>Riichi:</strong> Declaration of a ready hand by betting 1000 points.</li>
             <li><strong>Dora:</strong> Bonus tiles that increase hand value.</li>
@@ -335,10 +371,12 @@
             <li><strong>Pon:</strong> Claiming a triplet from any player's discard.</li>
             <li><strong>Closed Hand:</strong> A hand without any open melds (chi, pon, kan).</li>
             <li><strong>Open Hand:</strong> A hand with one or more open melds (revealed to others).</li>
-            <li><strong>Dealer (East):</strong> The player who starts the round; receives extra rewards for winning but more penalty for losing.</li>
+            <li><strong>Dealer (East):</strong> The player who starts the round;
+              receives extra rewards for winning but more penalty for losing.</li>
           </ul>
           <!-- Button -->
-          <a href="https://riichi.wiki/List_of_terminology_by_alphabetical_order" class="info-button" target="_blank">More Info</a>
+          <a href="https://riichi.wiki/List_of_terminology_by_alphabetical_order"
+             class="info-button" target="_blank">More Info</a>
         </div>
       </div>
 </section>
@@ -363,18 +401,27 @@
 
   <h4 id="dataset">Tenhou 4-Player Riichi Mahjong Dataset</h4>
   <p>
-    We utilized the <a href="https://www.kaggle.com/datasets/hphphp123321/tenhou-4-player-riichi-mahjong-dataset/data" target="_blank">
-    Tenhou 4-Player Riichi Mahjong Dataset</a>, which contains 51GB of gamelogs collected from online matches.
-    Each record encodes full game logs including tile draws, discards, calls, and winning hands. These logs were preprocessed
-    into training tuples representing decision points such as discards, riichi declarations, and calls (chi, pon, kan).
+    We utilized the
+    <a href="https://www.kaggle.com/datasets/hphphp123321/tenhou-4-player-riichi-mahjong-dataset/data"
+       target="_blank">
+    Tenhou 4-Player Riichi Mahjong Dataset</a>, which contains 51GB of gamelogs
+    collected from online matches.
+    Each record encodes full game logs including tile draws, discards, calls, and
+    winning hands. These logs were preprocessed
+    into training tuples representing decision points such as discards,
+    riichi declarations, and calls (chi, pon, kan).
   </p>
 
   <h4 id="mjx">MJX Framework</h4>
   <p>
-    For simulation and reinforcement learning, we used <a href="https://github.com/mjx-project/mjx" target="_blank">MJX</a>,
-    a fast and extensible Mahjong environment written in C++ and wrapped in Python. It provides full observability controls,
-    legal action extraction, and support for self-play training with reinforcement learning algorithms. We leveraged
-    MJX's ability to extract game states in a structured format to align with the supervised data and to implement
+    For simulation and reinforcement learning, we used <a href="https://github.com/mjx-project/mjx"
+                                                          target="_blank">MJX</a>,
+    a fast and extensible Mahjong environment written in C++ and wrapped in Python.
+    It provides full observability controls,
+    legal action extraction, and support for self-play training with reinforcement
+    learning algorithms. We leveraged
+    MJX's ability to extract game states in a structured format to align with the
+    supervised data and to implement
     agent evaluation pipelines.
   </p>
       <h3 id="rewards">Reward System</h3>
@@ -414,12 +461,15 @@
     \( \text{total_reward} = \sum_{t=0}^{T} r_t \)
   </p>
   <p>
-    where \( r_t \) is the reward at time step \( t \), and \( T \) is the total number of time steps in the episode.
+    where \( r_t \) is the reward at time step \( t \), and \( T \) is the total number
+    of time steps in the episode.
   </p>
 
   <h3>Reward Calculation</h3>
   <p>
-    The agent's goal is to maximize its expected cumulative reward. This is done by optimizing the policy using methods such as Proximal Policy Optimization (PPO). The cumulative return \( R \) at time step \( t \) is calculated as:
+    The agent's goal is to maximize its expected cumulative reward. This is done by
+    optimizing the policy using methods such as Proximal Policy Optimization (PPO).
+    The cumulative return \( R \) at time step \( t \) is calculated as:
   </p>
   <p>
     \( R_t = r_t + \gamma \cdot R_{t+1} \)
@@ -565,7 +615,7 @@
 
     <p>
       To test the final performance of our final agent (trained using supervised learning to initialize model
-      weights and PPO self-play to further improve policy network), we play 100 rounds of Riichi Mahjong
+      weights and PPO self-play to further improve policy network), we play 1000 rounds of Riichi Mahjong
       against 3 other agents, described below:
     </p>
 
@@ -574,15 +624,18 @@
       <p>
         A deterministic agent using hard-coded expert logic, designed as a strong rule-based baseline.
         It mimics human play using structured if-else decision logic and prioritizes winning moves (Tsumo/Ron),
-        Riichi declarations, and safe/strategic calls. Effective for benchmarking basic competence without learning.
+        Riichi declarations, and safe/strategic calls. Effective for benchmarking basic
+        competence without learning.
       </p>
     </div>
 
     <div class="agent-description">
       <h4>ShantenAgent</h4>
       <p>
-        A hand-efficiency-focused agent that plays solely to reduce the <em>shanten</em> number (the distance from a winning hand).
-        Inspired by Mjai's ShantenPlayer, it prioritizes draws/discards and melds that optimize efficiency, without regard to risk or opponent play.
+        A hand-efficiency-focused agent that plays solely to reduce the <em>shanten</em>
+        number (the distance from a winning hand).
+        Inspired by Mjai's ShantenPlayer, it prioritizes draws/discards
+        and melds that optimize efficiency, without regard to risk or opponent play.
         Represents a greedy but goal-driven heuristic.
       </p>
     </div>
@@ -590,73 +643,78 @@
     <div class="agent-description">
       <h4>AlphaJong</h4>
       <p>
-        A sophisticated, search-based agent inspired by AlphaGo’s philosophy. Instead of using machine learning,
-        <a href="https://github.com/Jimboom7/AlphaJong" target="_blank">AlphaJong</a> simulates future game states to evaluate possible actions and selects the most promising move.
+        A sophisticated, search-based agent inspired by AlphaGo’s philosophy. Instead of using
+        machine learning,
+        <a href="https://github.com/Jimboom7/AlphaJong" target="_blank">AlphaJong</a> simulates
+        future game states to evaluate possible actions and selects the most promising move.
         It effectively balances offense and defense through structured turn simulations.
         <strong>Notably, AlphaJong has reached <em>Master rank</em></strong>,
-        one of the highest competitive tiers in Mahjong Soul’s ranked ladder, indicating strong performance against human players.
+        one of the highest competitive tiers in Mahjong Soul’s ranked ladder, indicating strong
+        performance against human players.
       </p>
     </div>
 
     <p>
-      This table summarizes the placement distribution, average game score, and rating change for each agent over 100 games.
+      This table summarizes the placement distribution, average game score, and rating change
+      for each agent over 1000 games.
     </p>
 
     <table>
-      <caption>Performance of Agents in Simulated Mahjong Games (100 rounds)</caption>
-      <thead>
-        <tr>
-          <th>Agent ID</th>
-          <th>1st Rank</th>
-          <th>2nd Rank</th>
-          <th>3rd Rank</th>
-          <th>4th Rank</th>
-          <th>Avg. Score</th>
-          <th>Avg. Tenhou Rating Gain/Loss</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>MahjongMind</td>
-          <td>43.0%</td>
-          <td>29.0%</td>
-          <td>20.0%</td>
-          <td>8.0%</td>
-          <td>29,752.00</td>
-          <td>+40.95</td>
-        </tr>
-        <tr>
-          <td>ShantenAgent</td>
-          <td>11.0%</td>
-          <td>18.0%</td>
-          <td>33.0%</td>
-          <td>38.0%</td>
-          <td>20,959.00</td>
-          <td>-35.10</td>
-        </tr>
-        <tr>
-          <td>RuleBasedAgent</td>
-          <td>14.0%</td>
-          <td>17.0%</td>
-          <td>31.0%</td>
-          <td>38.0%</td>
-          <td>20,029.00</td>
-          <td>-31.05</td>
-        </tr>
-        <tr>
-          <td>AlphaJong</td>
-          <td>32.0%</td>
-          <td>36.0%</td>
-          <td>16.0%</td>
-          <td>16.0%</td>
-          <td>28,790.00</td>
-          <td>+25.20</td>
-        </tr>
-      </tbody>
-    </table>
+  <caption>Performance of Agents in Simulated Mahjong Games (1000 rounds)</caption>
+  <thead>
+    <tr>
+      <th>Agent ID</th>
+      <th>1st Rank</th>
+      <th>2nd Rank</th>
+      <th>3rd Rank</th>
+      <th>4th Rank</th>
+      <th>Avg. Score</th>
+      <th>Avg. Tenhou Rating Gain/Loss</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>MahjongMind</td>
+      <td>38.3%</td>
+      <td>28.4%</td>
+      <td>17.6%</td>
+      <td>15.7%</td>
+      <td>29,304.60</td>
+      <td>+25.97</td>
+    </tr>
+    <tr>
+      <td>ShantenAgent</td>
+      <td>15.2%</td>
+      <td>19.6%</td>
+      <td>31.8%</td>
+      <td>33.4%</td>
+      <td>21,027.00</td>
+      <td>-22.73</td>
+    </tr>
+    <tr>
+      <td>RuleBasedAgent</td>
+      <td>13.6%</td>
+      <td>23.2%</td>
+      <td>29.2%</td>
+      <td>34.0%</td>
+      <td>21,341.50</td>
+      <td>-23.31</td>
+    </tr>
+    <tr>
+      <td>AlphaJong</td>
+      <td>32.9%</td>
+      <td>28.8%</td>
+      <td>21.4%</td>
+      <td>16.9%</td>
+      <td>28,011.90</td>
+      <td>+20.07</td>
+    </tr>
+  </tbody>
+</table>
     <p>
-      MahjongMind stands out across all evaluation metrics. It wins 43% of games, well ahead of any other agent, and
-      finishes last only 8% of the time, showing strong consistency. It also posts the highest average
+      MahjongMind stands out across all evaluation metrics. It wins over 38% of games, well ahead of
+      any other agent, and
+      finishes last less than 16% of the time, showing strong consistency. It also posts the highest average
       score and rating gain, outperforming AlphaJong by a clear margin. Unlike the rule-based agents, which
       tend to collapse under pressure or overcommit to fixed strategies, MahjongMind balances aggression
       with control. Its ability to avoid low placements while capitalizing on strong hands suggests that
@@ -684,17 +742,26 @@
 <section id="conclusion" style="padding: 0 15%; text-align: left; margin: 40px 0;">
   <h2>Conclusion</h2>
   <p>
-    <strong>MahjongMind</strong> demonstrates that combining reinforcement learning with rule-based decision-making leads to strong and reliable performance in complex, imperfect information games.
-    Trained through a combination of supervised imitation and self-play using PPO, the agent was evaluated across 100 games against three competitive baselines: <em>ShantenAgent</em>, <em>RuleBasedAgent</em>, and <em>AlphaJong</em>.
+    <strong>MahjongMind</strong> demonstrates that combining reinforcement learning with
+    rule-based decision-making leads to strong and reliable performance in complex,
+    imperfect information games.
+    Trained through a combination of supervised imitation and self-play using PPO, the
+    agent was evaluated across 100 games against three competitive baselines: <em>ShantenAgent</em>,
+    <em>RuleBasedAgent</em>, and <em>AlphaJong</em>.
   </p>
   <p>
-    While AlphaJong—a search-based agent known for achieving Master rank in online play—serves as a strong benchmark, MahjongMind consistently outperformed all baselines.
-    It achieved the highest win rate (43%), the lowest last-place rate (8%), and led in both average score and rating gain.
-    These results highlight the benefits of grounding reinforcement learning in structured heuristics, enabling robust strategy formation without relying solely on search or expert imitation.
+    While AlphaJong, a search-based agent known for achieving Master rank in online play, serves
+    as a strong benchmark, MahjongMind consistently outperformed all baselines.
+    It achieved the highest win rate (38.3%), the lowest last-place rate (15.7%), and led
+    in both average score and rating gain.
+    These results highlight the benefits of grounding reinforcement learning in structured
+    heuristics, enabling robust strategy formation without relying solely on search or expert imitation.
   </p>
   <p>
-    This hybrid approach shows promise for more general decision-making settings involving uncertainty, multiple agents, and long-term planning.
-    Future directions include richer opponent modeling and extending the framework to other high-variance strategic domains.
+    This hybrid approach shows promise for more general decision-making settings
+    involving uncertainty, multiple agents, and long-term planning.
+    Future directions include richer opponent modeling and extending the framework
+    to other high-variance strategic domains.
   </p>
 </section>
   </div>
