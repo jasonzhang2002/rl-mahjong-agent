@@ -17,6 +17,8 @@
       }
     }
   </script>
+  <script> src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> </script>
+
 
   <style>
 #side-menu {
@@ -108,6 +110,7 @@
     <a href="#tools-and-dataset">Tools and Datasets</a>
     <a href="#dataset">Tenhou Dataset</a>
     <a href="#mjx">MJX Framework</a>
+    <a href="#rewards">Reward System</a>
   </div>
 
   <a href="#results">Experiments & Results</a>
@@ -374,6 +377,58 @@
     MJX's ability to extract game states in a structured format to align with the supervised data and to implement
     agent evaluation pipelines.
   </p>
+      <h3 id="rewards">Reward System</h3>
+  <p>
+    The reward system used during training is modeled after the <em>elo</em> system
+    from <a href="https://tenhou.net" target="_blank">Tenhou.net</a>, the most widely
+    used online platform for Riichi Mahjong. At the end of each game, elo is distributed as follows:
+  </p>
+  <ul>
+    <li><strong>1st Rank</strong> (highest score): +90 elo</li>
+    <li><strong>2nd place</strong>: +45 elo</li>
+    <li><strong>3rd place</strong>: +0 elo</li>
+    <li><strong>4th place</strong> (lowest score): –135 elo</li>
+  </ul>
+  <p>
+    This system rewards defensive play over reckless decisions, encouraging agents to avoid
+    risky discards rather than exploit weak opponents aggressively. It reflects the
+    priorities of real-world competitive platforms, where avoiding losses is often more
+    critical than maximizing short-term gains.
+  </p>
+  <p>
+    While this design aligns well with the strategic objectives of
+    Riichi Mahjong, alternative reward schemes, such as using raw score, could be developed for different
+    goals (such as maximizing raw point gain), which would encourage more aggressive,
+    exploitative behavior against weaker opponents.
+  </p>
+      <h3 id="rewards-training">Rewards During Training</h3>
+  <p>
+    During training, the agent receives a reward after each action:
+  </p>
+  <pre><code>obs, reward, done, info = env.step(action)</code></pre>
+
+  <p>
+    The reward value at each time step is accumulated over the course of an episode:
+  </p>
+  <p>
+    \( \text{total_reward} = \sum_{t=0}^{T} r_t \)
+  </p>
+  <p>
+    where \( r_t \) is the reward at time step \( t \), and \( T \) is the total number of time steps in the episode.
+  </p>
+
+  <h3>Reward Calculation</h3>
+  <p>
+    The agent's goal is to maximize its expected cumulative reward. This is done by optimizing the policy using methods such as Proximal Policy Optimization (PPO). The cumulative return \( R \) at time step \( t \) is calculated as:
+  </p>
+  <p>
+    \( R_t = r_t + \gamma \cdot R_{t+1} \)
+  </p>
+  <ul>
+    <li>\( r_t \): the immediate reward at time step \( t \)</li>
+    <li>\( \gamma \): the discount factor, set to \( 0.99 \)</li>
+    <li>\( R_{t+1} \): the return at the next time step</li>
+  </ul>
 </section>
 
 <section id="results" class="centered-section">
@@ -536,7 +591,7 @@
       <h4>AlphaJong</h4>
       <p>
         A sophisticated, search-based agent inspired by AlphaGo’s philosophy. Instead of using machine learning,
-        AlphaJong simulates future game states to evaluate possible actions and selects the most promising move.
+        <a href="https://github.com/Jimboom7/AlphaJong" target="_blank">AlphaJong</a> simulates future game states to evaluate possible actions and selects the most promising move.
         It effectively balances offense and defense through structured turn simulations.
         <strong>Notably, AlphaJong has reached <em>Master rank</em></strong>,
         one of the highest competitive tiers in Mahjong Soul’s ranked ladder, indicating strong performance against human players.
@@ -641,19 +696,6 @@
     This hybrid approach shows promise for more general decision-making settings involving uncertainty, multiple agents, and long-term planning.
     Future directions include richer opponent modeling and extending the framework to other high-variance strategic domains.
   </p>
-</section>
-
-<section id="citations" style="padding: 0 15%; text-align: left; margin: 40px 0;">
-  <h2>Citations</h2>
-  <ul>
-    <li>
-      Tenhou Dataset: <a href="https://www.kaggle.com/datasets/hphphp123321/tenhou-4-player-riichi-mahjong-dataset/data" target="_blank">
-      https://www.kaggle.com/datasets/hphphp123321/tenhou-4-player-riichi-mahjong-dataset/data</a>
-    </li>
-    <li>
-      MJX Environment: <a href="https://github.com/mjx-project/mjx" target="_blank">https://github.com/mjx-project/mjx</a>
-    </li>
-  </ul>
 </section>
   </div>
 </div> <!-- Close #page -->
