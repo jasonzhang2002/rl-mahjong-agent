@@ -30,6 +30,7 @@
     <a href="#glossary">Glossary</a>
     <a href="#tenhou">Tenhou Platform</a>
     <a href="#other-agents">Links to Other Agents</a>
+    <a href="#methodology">Methodology</a>
     <a href="#results">Results</a>
     <a href="#demo">Demo</a>
   </div>
@@ -286,16 +287,26 @@
       </div>
     </section>
 
+    <section id="methodology">
+      <h2>Methodology</h2>
+      <p>Our agent achieves competitive performance against baseline heuristic agents. After 100,000 self-play games, it consistently maintains a positive expected point gain per game. Future improvements include faster simulation speeds and enhanced discard strategies.</p>
+    </section>
+
     <section id="results">
       <h2>Results</h2>
       <p>Our agent achieves competitive performance against baseline heuristic agents. After 100,000 self-play games, it consistently maintains a positive expected point gain per game. Future improvements include faster simulation speeds and enhanced discard strategies.</p>
     </section>
 
     <section id="demo">
-      <h2>Demo</h2>
-      <p>Watch a demo of the agent playing on simulated Tenhou environments below:</p>
-      <p><a href="demo_video.mp4" target="_blank">View Demo Video</a></p>
-      <p>Or try interacting with the agent directly (coming soon!).</p>
+        <h2>Demo</h2>
+        <p>Below is a sample match played by the agents in the final results table.
+        In the replay, the perspective is fixed with our agent at the bottom, AlphaJong on left,
+        the ShantenAgent on the top, and the RulesBasedAgent on the right. </p>
+
+        <video id="demo-video" width="850" controls poster="poster.jpg">
+          <source src="videos/replay.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
     </section>
 
   </div>
