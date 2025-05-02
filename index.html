@@ -149,7 +149,7 @@
       The agent uses a mix of learned behavior from PPO and simple rule-based logic to make
       smarter, more stable decisions. </p>
     <p> We tested MahjongMind against several other
-    agents including AlphaJong, a strong search-based AI that has reached Master rank on Mahjong websites.
+    agents including (most notably) AlphaJong, a strong search-based AI that has reached Master rank on Mahjong websites.
       Over 1000 games, MahjongMind came close to matching AlphaJong’s performance,
       winning 32.9% of games and gaining an average of +20.07 in rating.
       This was done with only 200,000 training steps, showing that even with limited compute,
@@ -400,6 +400,42 @@ The MahjongMind training pipeline consists of five main stages: Tenhou Game Logs
     <strong>Final Policy Network</strong>: The outcome of this pipeline is a fully trained policy network capable of making high-quality decisions in real-time Mahjong play. It can be evaluated against human players or other agents for benchmarking.
   </li>
 </ol>
+      <h3 id="decision-schema">Decision Schema</h3>
+
+<p>
+Our Mahjong AI agent follows a hierarchical decision schema inspired by the structure of the
+  MJX environment and strategies introduced in <a href="https://arxiv.org/abs/2003.13590"
+       target="_blank">
+    Suphx</a>, another paper focused on RL applications in Mahjong. The decision process respects the
+  rules and priorities of Riichi Mahjong and is organized as follows:
+</p>
+
+<ul>
+  <li>
+    <strong>Action Type Filtering</strong>: At every game step, the
+    MJX environment provides a list of legal actions. These are grouped by action type
+    (e.g., discard, riichi, pon, chi, kan).
+  </li>
+  <li>
+    <strong>Binary Head Decisions</strong>: If an action type has exactly
+    two legal options (e.g., pon or pass), the corresponding model head
+    (e.g., <code>pon_model</code>) outputs a softmax over the logits to decide.
+  </li>
+  <li>
+    <strong>Discard Head (Multiclass)</strong>: If discard or tsumogiri is legal,
+    the 34-way discard head is used to choose the best tile to discard.
+  </li>
+  <li>
+    <strong>Other Legal Actions</strong>: Ron, Tsumo, and other actions are handled
+    through reinforcement learning alone (i.e., no supervised component). In rare
+    edge cases where no trained head applies, the agent defaults to selecting a legal action at random.
+  </li>
+</ul>
+
+<p>
+This design allows the agent to reuse supervised learning heads trained on Tenhou
+  data while improving the shared representation through reinforcement learning with PPO.
+</p>
 
       <h3 id="tools-and-dataset">Tools and Datasets</h3>
 
