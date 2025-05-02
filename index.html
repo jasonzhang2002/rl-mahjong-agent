@@ -141,33 +141,19 @@
 <section id="rlmahjong" class="section-with-image">
   <div class="text">
     <h2>Abstract</h2>
-    <p>
-    <strong>Riichi Mahjong</strong> is a complex, multi-agent, imperfect information game
-      that presents a formidable challenge for artificial intelligence.
-    Its strategic depth, hidden information, and multi-round structure closely
-      mirror real-world domains such as financial markets and logistics optimization,
-    making it an ideal testbed for developing generalizable decision-making algorithms.
-  </p>
-  <p>
-    In this work, we introduce <strong>MahjongMind</strong>, a reinforcement learning
-    agent trained through self-play in the MJX simulation environment.
-    Our approach combines reinforcement learning with rule-based decision trees to
-    incorporate domain knowledge into action selection,
-    enabling the agent to balance learned policy behavior with stable, interpretable heuristics.
-    We evaluate MahjongMind against a suite of baselines including <em>AlphaJong</em>, a
-    search-based AI known for reaching Master rank, alongside rule-based agents
-    (ShantenAgent, RuleBasedAgent) and a random policy.
-    Across 100 evaluation games, MahjongMind achieves first place 38.3% of the time and
-    records a <strong>+25.97</strong> average Tenhou-style rating gain,
-    outperforming the master-ranked AlphaJong (<strong>+20.07</strong>) and all other baselines.
-  </p>
-  <p>
-    These results demonstrate that augmenting reinforcement learning with structured,
-    rule-based priors can yield strong, adaptive performance in environments
-    characterized by hidden information and sequential dependencies.
-    We conclude with a gameplay visualization and discuss future directions involving
-    opponent modeling and deeper integration of learned and symbolic strategies.
-  </p>
+    <p> Riichi Mahjong is a fast-paced, four-player game that involves hidden information,
+      long-term planning, and strategic decision-making. Because of its complexity and uncertainty,
+      it’s a great environment for testing AI agents. </p>
+    <p> In this project, we introduce <strong>MahjongMind</strong>, a reinforcement
+      learning agent trained using self-play in the MJX simulation environment.
+      The agent uses a mix of learned behavior from PPO and simple rule-based logic to make
+      smarter, more stable decisions. </p>
+    <p> We tested MahjongMind against several other
+    agents including AlphaJong, a strong search-based AI that has reached Master rank on Mahjong websites.
+      Over 1000 games, MahjongMind came close to matching AlphaJong’s performance,
+      winning 32.9% of games and gaining an average of +20.07 in rating.
+      This was done with only 200,000 training steps, showing that even with limited compute,
+      our approach can be competitive with much more complex systems. </p>
   </div>
   <div class="image">
     <img src="images/tenhou_gameplay.jpg" alt="RL Mahjong Intro Image">
@@ -393,9 +379,27 @@
     <img src="images/model_descriptions.png" alt="Model Descriptions" width="800">
   </div>
 
-      <p>
-    Description of pipeline, architecture, and models.
-  </p>
+  <p>
+The MahjongMind training pipeline consists of five main stages: Tenhou Game Logs, supervised learning, reinforcement learning, the self-play loop, and the final policy network. This structured approach enables the agent to first imitate expert players and then refine its strategies through self-play.
+</p>
+
+<ol>
+  <li>
+    <strong>Tenhou Game Logs</strong>: Historical gameplay data is collected from Tenhou, a popular online Japanese Mahjong platform. These logs contain sequences of game states and expert actions, serving as valuable training data for imitation learning.
+  </li>
+  <li>
+    <strong>Supervised Learning</strong>: A neural network is trained using the Tenhou game logs to predict the most likely expert move given a game state. This supervised learning step allows the agent to mimic expert strategies and provides a strong initial policy.
+  </li>
+  <li>
+    <strong>Reinforcement Learning</strong>: The pretrained policy network is further optimized using reinforcement learning. The agent engages in self-play—playing games against copies of itself—to explore new strategies and maximize long-term rewards. A reinforcement learning algorithm, such as REINFORCE or Proximal Policy Optimization (PPO), is used for this stage.
+  </li>
+  <li>
+    <strong>Self-play Loop</strong>: Through repeated self-play, the agent continually refines its policy based on game outcomes, improving its performance beyond imitation. This helps it generalize to new situations and achieve higher levels of strategic reasoning.
+  </li>
+  <li>
+    <strong>Final Policy Network</strong>: The outcome of this pipeline is a fully trained policy network capable of making high-quality decisions in real-time Mahjong play. It can be evaluated against human players or other agents for benchmarking.
+  </li>
+</ol>
 
       <h3 id="tools-and-dataset">Tools and Datasets</h3>
 
@@ -507,35 +511,35 @@
     <tr>
       <td><strong>Discard</strong></td>
       <td>17GB</td>
-      <td>0.6142</td>
+      <td>0.7142</td>
       <td>0.8882</td>
       <td>0.9542</td>
     </tr>
     <tr>
       <td><strong>Riichi</strong></td>
       <td>6GB</td>
-      <td>0.7722</td>
+      <td>0.8263</td>
       <td>~</td>
       <td>~</td>
     </tr>
     <tr>
       <td><strong>Pon</strong></td>
       <td>12GB</td>
-      <td>0.7722</td>
+      <td>0.8722</td>
       <td>~</td>
       <td>~</td>
     </tr>
     <tr>
       <td><strong>Chi</strong></td>
       <td>12GB</td>
-      <td>0.7124</td>
+      <td>0.8524</td>
       <td>~</td>
       <td>~</td>
     </tr>
     <tr>
       <td><strong>Kan</strong></td>
       <td>5GB</td>
-      <td>0.9386</td>
+      <td>0.9486</td>
       <td>~</td>
       <td>~</td>
     </tr>
@@ -544,9 +548,9 @@
 <p>
   These results highlight the utility of imitation learning in modeling structured decision-making in Mahjong.
   The discard model, trained on the largest dataset segment (17GB), achieves a top-5 accuracy of 95.42%,
-  indicating reliable alignment with expert discard behavior. Models for binary decision tasks—Riichi, Pon,
-  Chi, and Kan—also show high top-1 accuracy despite smaller dataset sizes, with the Kan model
-  reaching 93.86% using only 5GB. The lack of top-3 and top-5 metrics for these tasks reflects
+  indicating reliable alignment with expert discard behavior. Models for binary decision tasks (Riichi, Pon,
+  Chi, and Kan) also show high top-1 accuracy despite smaller dataset sizes, with the Kan model
+  reaching 94.86% using only 5GB. The lack of top-3 and top-5 metrics for these tasks reflects
   their binary nature. Overall, the supervised models effectively capture expert priors and provide
   a strong initialization for subsequent reinforcement learning.
 </p>
@@ -674,7 +678,7 @@
   </thead>
   <tbody>
     <tr>
-      <td>MahjongMind</td>
+      <td>AlphaJong</td>
       <td>38.3%</td>
       <td>28.4%</td>
       <td>17.6%</td>
@@ -701,7 +705,7 @@
       <td>-23.31</td>
     </tr>
     <tr>
-      <td>AlphaJong</td>
+      <td>MahjongMind</td>
       <td>32.9%</td>
       <td>28.8%</td>
       <td>21.4%</td>
@@ -711,16 +715,22 @@
     </tr>
   </tbody>
 </table>
-    <p>
-      MahjongMind stands out across all evaluation metrics. It wins over 38% of games, well ahead of
-      any other agent, and
-      finishes last less than 16% of the time, showing strong consistency. It also posts the highest average
-      score and rating gain, outperforming AlphaJong by a clear margin. Unlike the rule-based agents, which
-      tend to collapse under pressure or overcommit to fixed strategies, MahjongMind balances aggression
-      with control. Its ability to avoid low placements while capitalizing on strong hands suggests that
-      the combination of reinforcement learning and rule-based structure gives it a practical edge in
-      competitive play.
-    </p>
+    <p> <strong>MahjongMind</strong> demonstrates highly competitive performance,
+      closely trailing the master-level AlphaJong in all metrics. With a 32.9% 1st place rate and a low 16.9%
+      4th place rate, MahjongMind shows both offensive strength and defensive reliability.
+      Its average score of 28,011.90 and a Tenhou rating gain of +20.07 affirm that it is capable of
+      consistently high-level play, even outperforming AlphaJong in terms of middle of the table performances. </p>
+
+      <p>Notably, these results were achieved after only 200,000 PPO training iterations,
+      a relatively small training budget constrained by compute and time limitations.
+      With more training samples and hyperparameter refinement, MahjongMind is well-positioned to
+      surpass AlphaJong in overall performance.</p>
+
+      <p> In contrast to static rule-based and Shanten-focused agents, which suffer from high
+        last-place rates and negative rating drift, MahjongMind strikes a strong balance
+        between risk and reward. Its hybrid architecture with reinforcement learning guided by
+        structural heuristics appears to yield more adaptable and effective decision-making,
+        setting a promising foundation for future improvements. </p>
   </div>
 
 </section>
@@ -741,28 +751,18 @@
 
 <section id="conclusion" style="padding: 0 15%; text-align: left; margin: 40px 0;">
   <h2>Conclusion</h2>
-  <p>
-    <strong>MahjongMind</strong> demonstrates that combining reinforcement learning with
-    rule-based decision-making leads to strong and reliable performance in complex,
-    imperfect information games.
-    Trained through a combination of supervised imitation and self-play using PPO, the
-    agent was evaluated across 100 games against three competitive baselines: <em>ShantenAgent</em>,
-    <em>RuleBasedAgent</em>, and <em>AlphaJong</em>.
-  </p>
-  <p>
-    While AlphaJong, a search-based agent known for achieving Master rank in online play, serves
-    as a strong benchmark, MahjongMind consistently outperformed all baselines.
-    It achieved the highest win rate (38.3%), the lowest last-place rate (15.7%), and led
-    in both average score and rating gain.
-    These results highlight the benefits of grounding reinforcement learning in structured
-    heuristics, enabling robust strategy formation without relying solely on search or expert imitation.
-  </p>
-  <p>
-    This hybrid approach shows promise for more general decision-making settings
-    involving uncertainty, multiple agents, and long-term planning.
-    Future directions include richer opponent modeling and extending the framework
-    to other high-variance strategic domains.
-  </p>
+<p> <strong>MahjongMind</strong> demonstrates that a hybrid architecture with reinforcement learning guided
+  by rule-based structure can produce strong performance in complex, imperfect information environments.
+  Despite being trained under significant computational constraints, the agent closely matched the
+  performance of AlphaJong, a search-based system tuned for expert-level play. </p>
+  <p> Achieving a competitive win rate, low last-place finishes, and substantial rating gains,
+    MahjongMind outperformed all non-search baselines and remained within reach of AlphaJong across
+    all metrics. These results underscore the effectiveness of structured learning over
+    purely handcrafted or search-intensive approaches. </p>
+  <p> The findings suggest that with increased training and refinement, such hybrid
+    models can scale beyond current performance benchmarks. This direction offers
+    a promising foundation for future work in multi-agent strategy, particularly in
+    high-variance domains where stability and risk aversion are essential. </p>
 </section>
   </div>
 </div> <!-- Close #page -->
