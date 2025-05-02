@@ -17,30 +17,70 @@
       }
     }
   </script>
+  <style>
+/* Default: no padding */
+  #main-content {
+    padding: 0 5%;
+  }
+
+  /* Apply 20% side padding only to these sections */
+  #results,
+  #methodology {
+    padding: 0 15%;
+    text-align: left;
+    margin: 40px 0;
+  }
+
+  /* Keep text left-aligned by default */
+  #main-content h2,
+  #main-content p,
+  #main-content ul,
+  #main-content table {
+    text-align: left;
+  }
+
+  /* Only center the demo section */
+  #demo.centered-section {
+    padding: 0 15%;
+    text-align: left;
+    margin: 40px 0;
+  }
+
+  #demo video {
+
+    max-width: 100%;
+  }
+</style>
+
 </head>
 <body>
 
 <div id="page">
-  <div id="side-menu">
-    <div class="menu-title">Menu</div>
-    <a href="#rlmahjong">RLMahjong</a>
-    <a href="#mahjong-intro">Mahjong Introduction</a>
-    <a href="#rules">Rules</a>
+<div id="side-menu">
+  <div class="menu-title">Menu</div>
+  <a href="#rlmahjong">MahjongMind</a>
+  <a href="#mahjong-intro">Introduction to Mahjong</a>
+
+  <div class="submenu">
     <a href="#tiles">Tiles</a>
+    <a href="#rules">Rules</a>
+    <a href="#yaku">Yaku</a>
     <a href="#glossary">Glossary</a>
     <a href="#tenhou">Tenhou Platform</a>
-    <a href="#other-agents">Links to Other Agents</a>
-    <a href="#methodology">Methodology</a>
-    <a href="#results">Results</a>
-    <a href="#demo">Demo</a>
+    <a href="#other-agents">Other Agents</a>
   </div>
+
+  <a href="#methodology">Methodology</a>
+  <a href="#results">Results</a>
+  <a href="#demo">Demo</a>
+</div>
 
   <div id="main-content">
     <button id="menu-button" onclick="toggleMenu()">☰</button>
 
     <section id="rlmahjong" class="section-with-image">
       <div class="text">
-        <h1>RL Mahjong Agent</h1>
+        <h1>MahjongMind</h1>
         <p>
           This project explores the development of a Reinforcement Learning agent for the game of Japanese Riichi Mahjong.
           We focus on designing effective reward structures, efficient state representations, and competitive self-play training regimes.
@@ -205,7 +245,8 @@
   </ul>
     <!-- Button -->
   <a href="https://riichi.wiki/List_of_yaku" class="info-button" target="_blank">More Info</a>
-</div>
+
+  </div>
 
 
         <div class="mahjong-subsection" id="glossary">
@@ -230,87 +271,119 @@
           <!-- Button -->
           <a href="https://riichi.wiki/List_of_terminology_by_alphabetical_order" class="info-button" target="_blank">More Info</a>
         </div>
-
-        <!-- Row 3: Tenhou and Other Agents -->
-<div class="mahjong-subsection" id="tenhou">
-  <div class="section-image">
-    <img src="images/tenhou_logo_raw_wb.png" alt="Tenhou Platform Example">
-  </div>
-  <h3>Tenhou Platform</h3>
-  <p>
-    <a href="https://tenhou.net/" target="_blank"><strong>Tenhou</strong></a> is one of the most popular online platforms for playing Japanese Riichi Mahjong. It provides real-time matchmaking, standardized rulesets, and detailed player records, making it the primary competitive environment for both casual players and AI agents.
-  </p>
-
-  <p>
-    Tenhou features a tiered ranking system based on performance in rated games. Players begin at the lowest "9th kyu" (九級) rank and, through consistent winning and point accumulation, can advance through dan (段位) ranks such as 1st dan (初段), 2nd dan (二段), up to 10th dan (十段). Above the dan system, elite players compete on "Tokujo" (特上卓) tables and ultimately "Houou" (鳳凰卓) tables, the highest level available, reserved for top 0.1% of players.
-  </p>
-
-  <p>
-    Ratings on Tenhou combine elements of Elo-style systems with placement-based points earned in four-player matches. Promotion and demotion depend on maintaining a positive point balance at each rank. For Mahjong AI agents, achieving stable high ranks on Tenhou, particularly Houou level, is considered a benchmark of near-professional strength.
-  </p>
-
-
-</div>
-
-        <div class="mahjong-subsection" id="other-agents">
-            <div class="section-image">
-    <img src="images/suphx_logo.png" alt="Suphx Logo">
-  </div>
-  <h3>Links to Other Agents</h3>
-  <p>
-    To benchmark and evaluate our RL Mahjong agent, we consider two well-known AI systems developed for Mahjong:
-  </p>
-
-  <p>
-    <strong><a href="https://github.com/Jimboom7/AlphaJong" target="_blank">AlphaJong</a></strong> is a
-    Mahjong AI designed for the Mahjong Soul platform that runs directly inside a browser. It is written
-    entirely in native JavaScript without using any external libraries. AlphaJong does not employ machine
-    learning; instead, it uses a lightweight simulation-based approach: for each decision, it simulates
-    multiple possible turn sequences and evaluates outcomes to choose moves. Despite not using machine
-    learning, AlphaJong achieved strong practical performance, attaining the <strong>Master rank</strong>
-    (マスター) on the Tenhou platform — a title awarded to players ranked above standard dan levels and
-    among the top competitive players.
-  </p>
-
-  <p>
-    <strong><a href="https://www.microsoft.com/en-us/research/project/suphx-mastering-mahjong-with-deep-reinforcement-learning/"
-               target="_blank">Suphx</a></strong> is a deep reinforcement learning-based Mahjong agent
-    developed by Microsoft Research Asia. Suphx uses a neural network policy trained via self-play combined
-    with novel techniques: global reward prediction to stabilize training across long episodes, oracle-guided
-    exploration to accelerate early learning, and runtime policy adaptation to adjust decisions based on recent
-    game states. Suphx achieved top ranks on the competitive Tenhou platform, ranking above 99.99% of all human
-    players, and is regarded as the first Mahjong AI to surpass most expert-level human performance.
-  </p>
-</div>
-
-
       </div>
-    </section>
+</section>
 
-    <section id="methodology">
-      <h2>Methodology</h2>
-      <p>Our agent achieves competitive performance against baseline heuristic agents. After 100,000 self-play games, it consistently maintains a positive expected point gain per game. Future improvements include faster simulation speeds and enhanced discard strategies.</p>
-    </section>
 
-    <section id="results">
-      <h2>Results</h2>
-      <p>Our agent achieves competitive performance against baseline heuristic agents. After 100,000 self-play games, it consistently maintains a positive expected point gain per game. Future improvements include faster simulation speeds and enhanced discard strategies.</p>
-    </section>
 
-    <section id="demo">
-        <h2>Demo</h2>
-        <p>Below is a sample match played by the agents in the final results table.
-        In the replay, the perspective is fixed with our agent at the bottom, AlphaJong on left,
-        the ShantenAgent on the top, and the RulesBasedAgent on the right. </p>
+    <section id="methodology" class="centered-section">
+  <h2>Methodology</h2>
+  <p>Empty.</p>
+</section>
 
-        <video id="demo-video" width="850" controls poster="poster.jpg">
-          <source src="videos/replay.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-    </section>
+<section id="results" class="centered-section">
+  <h2>Results</h2>
+  <p>To test the final performance of our agent, we play 100 rounds of Riichi Mahjong against 3 other agents, described below:</p>
 
+  <div class="agent-description">
+    <h3>RuleBasedAgent</h3>
+    <p>
+      A deterministic agent using hard-coded expert logic, designed as a strong rule-based baseline.
+      It mimics human play using structured if-else decision logic and prioritizes winning moves (Tsumo/Ron),
+      Riichi declarations, and safe/strategic calls. Effective for benchmarking basic competence without learning.
+    </p>
   </div>
-</div>
 
+  <div class="agent-description">
+    <h3>ShantenAgent</h3>
+    <p>
+      A hand-efficiency-focused agent that plays solely to reduce the <em>shanten</em> number (the distance from a winning hand).
+      Inspired by Mjai's ShantenPlayer, it prioritizes draws/discards and melds that optimize efficiency, without regard to risk or opponent play.
+      Represents a greedy but goal-driven heuristic.
+    </p>
+  </div>
+
+  <div class="agent-description">
+    <h3>AlphaJong</h3>
+    <p>
+      A sophisticated, search-based agent inspired by AlphaGo’s philosophy. Instead of using machine learning,
+      AlphaJong simulates future game states to evaluate possible actions and selects the most promising move.
+      It effectively balances offense and defense through structured turn simulations.
+      <strong>Notably, AlphaJong has reached <em>Master rank</em></strong>,
+      one of the highest competitive tiers in Mahjong Soul’s ranked ladder, indicating strong performance against human players.
+    </p>
+  </div>
+
+  <p>This table summarizes the placement distribution, average game score, and rating change for each agent over 100 games.</p>
+
+  <table>
+    <caption>Performance of Agents in Simulated Mahjong Games (100 rounds)</caption>
+    <thead>
+      <tr>
+        <th>Agent ID</th>
+        <th>1st Rank</th>
+        <th>2nd Rank</th>
+        <th>3rd Rank</th>
+        <th>4th Rank</th>
+        <th>Avg. Score</th>
+        <th>Avg. Tenhou Rating Gain/Loss</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>MahjongMind</td>
+        <td>43.0%</td>
+        <td>29.0%</td>
+        <td>20.0%</td>
+        <td>8.0%</td>
+        <td>29,752.00</td>
+        <td>40.95</td>
+      </tr>
+      <tr>
+        <td>ShantenAgent</td>
+        <td>11.0%</td>
+        <td>18.0%</td>
+        <td>33.0%</td>
+        <td>38.0%</td>
+        <td>20,959.00</td>
+        <td>-35.10</td>
+      </tr>
+      <tr>
+        <td>RuleBasedAgent</td>
+        <td>14.0%</td>
+        <td>17.0%</td>
+        <td>31.0%</td>
+        <td>38.0%</td>
+        <td>20,029.00</td>
+        <td>-31.05</td>
+      </tr>
+      <tr>
+        <td>AlphaJong</td>
+        <td>32.0%</td>
+        <td>36.0%</td>
+        <td>16.0%</td>
+        <td>16.0%</td>
+        <td>28,790.00</td>
+        <td>25.20</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="demo" class="centered-section">
+  <h2>Demo</h2>
+  <p>
+    Below is a sample match played by the agents in the final results table.
+    In the replay, the perspective is fixed with our agent at the bottom, AlphaJong on the left,
+    the ShantenAgent on the top, and the RuleBasedAgent on the right.
+  </p>
+
+  <video id="demo-video" width="850" controls poster="poster.jpg">
+    <source src="videos/replay.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</section>
+  </div>
+</div> <!-- Close #page -->
 </body>
 </html>

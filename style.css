@@ -214,3 +214,64 @@ body {
 .info-button:hover {
     background-color: #005fa3;
 }
+
+#side-menu .submenu {
+  margin-left: 1em;
+}
+
+#side-menu .submenu a {
+  font-size: 0.9em;
+  color: #777;
+  display: block;
+  text-decoration: none;
+  padding: 4px 0;
+}
+
+<style>
+  .centered-section {
+    text-align: center;
+    padding: 0 10%;
+    margin: 40px 0;
+  }
+
+  .centered-section h2 {
+    margin-bottom: 20px;
+  }
+
+  .agent-description {
+    margin: 20px 0;
+  }
+
+  .centered-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+  }
+
+  .centered-section caption {
+    caption-side: top;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 0.5em;
+  }
+
+  .centered-section th,
+  .centered-section td {
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    text-align: center;
+  }
+
+  .centered-section th {
+    background-color: #f4f4f4;
+  }
+
+  .centered-section tr:hover {
+    background-color: #f9f9f9;
+  }
+
+  #demo video {
+    margin-top: 20px;
+    max-width: 50%;
+  }
+</style>
